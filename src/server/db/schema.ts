@@ -7,6 +7,7 @@ import {
   pgTableCreator,
   serial,
   timestamp,
+  uuid,
   varchar,
 } from 'drizzle-orm/pg-core';
 
@@ -32,3 +33,22 @@ export const posts = createTable(
     nameIndex: index('name_idx').on(example.name),
   }),
 );
+
+export const users = createTable(
+  'users',
+  {
+    id: uuid('id').primaryKey(),
+    email: varchar('email', { length: 256 }).unique().notNull(),
+    name: varchar('name', { length: 256 }),
+    hashedPassword: varchar('hashed_password', { length: 256 }).notNull(),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').$onUpdate(() => new Date()),
+    deletedAt: timestamp('deleted_at'),
+  },
+  (user) => ({
+    emailIndex: index('email_idx').on(user.email),
+  }),
+);
+
+export type User = typeof users.$inferSelect;
+export type CreateUserRequest = typeof users.$inferInsert;
