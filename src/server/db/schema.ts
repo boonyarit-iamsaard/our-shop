@@ -37,7 +37,7 @@ export const posts = createTable(
 export const users = createTable(
   'users',
   {
-    id: uuid('id').primaryKey(),
+    id: uuid('id').primaryKey().defaultRandom(),
     email: varchar('email', { length: 256 }).unique().notNull(),
     name: varchar('name', { length: 256 }),
     hashedPassword: varchar('hashed_password', { length: 256 }).notNull(),
