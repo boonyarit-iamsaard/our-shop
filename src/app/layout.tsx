@@ -3,6 +3,7 @@ import '~/styles/globals.css';
 import { type ReactNode } from 'react';
 import { Noto_Sans_Thai as NotoSansThai } from 'next/font/google';
 
+import { Shell } from '~/components/shell';
 import { cn } from '~/libs/utils';
 import { TRPCReactProvider } from '~/trpc/react';
 
@@ -31,7 +32,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontSans.variable,
         )}
       >
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          <Shell>{children}</Shell>
+        </TRPCReactProvider>
       </body>
     </html>
   );
