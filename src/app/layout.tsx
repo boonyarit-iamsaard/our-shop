@@ -7,6 +7,10 @@ import { Shell } from '~/components/shell';
 import { cn } from '~/libs/utils';
 import { TRPCReactProvider } from '~/trpc/react';
 
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
 const fontSans = NotoSansThai({
   display: 'swap',
   subsets: ['latin', 'thai'],
@@ -14,12 +18,8 @@ const fontSans = NotoSansThai({
   variable: '--font-sans',
 });
 
-type RootLayoutProps = {
-  children: ReactNode;
-};
-
 export const metadata = {
-  title: 'Vacation Club',
+  title: 'Our Shop',
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
 };
 
